@@ -10,7 +10,6 @@ if (isset($_POST['action'])) {
 } else {
     $action = 'list_products';
 }
-
 if ($action == 'list_products') {
     // Get the current category ID
     $category_id = $_GET['category_id'];
@@ -54,5 +53,22 @@ if ($action == 'list_products') {
         // Display the Product List page for the current category
         header("Location: .?category_id=$category_id");
     }
+} else if ($action == 'list_categories'){
+	$categories = get_categories();
+	include('category_list.php');	
+} else if ($action == 'add_category'){
+	$category_name = $_POST['categoryName'];
+	//Validate the inputs
+    if (empty($category_name)) {
+        $error = "Invalid category data. Check all fields and try again.";
+        include('../errors/error.php');
+    } else {
+       add_categories($category_name);
+	   header("Location: http://localhost/ch05_ex1/product_manager/?action=list_categories");
+	}
+} else if($action == 'delete_category') {
+	$category_id = $_POST['category_id'];
+	delete_categories($category_id);
+	header("Location: http://localhost/ch05_ex1/product_manager/?action=list_categories");
 }
 ?>
