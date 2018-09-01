@@ -63,7 +63,8 @@
             <?php endif; ?>
             <p><a href=".?action=show_add_item">Add Item</a></p>
             <p><a href=".?action=empty_cart">Empty Cart</a></p>
-
+			<p><a href=".?action=delete_cookie">End Session and Delete Cookie</a></p>
+			<p><?php echo session_id(); ?></p>
         </div><!-- end main -->
     </div><!-- end page -->
 </body>
